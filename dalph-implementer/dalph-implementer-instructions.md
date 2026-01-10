@@ -1,0 +1,203 @@
+## IMPLEMENTER WORKFLOW
+
+You received ONE story to implement. Work efficiently using pre-analyzed context.
+
+### TASK FOLDER STRUCTURE
+```
+tasks/[task-name]/
+  context.md        ← READ THIS FIRST (short, has stack + patterns)
+  prd-*.md          ← Full PRD if you need more context
+  progress.txt      ← History (usually don't need to read)
+  prd.json          ← Stories (orchestrator manages this)
+  /test_tools/      ← SAVE your test utilities here (preserved!)
+```
+
+---
+
+## PHASE 1: QUICK CONTEXT (Efficient!)
+
+### Step 1.1: Read context.md ONLY
+Use **Read Files** to read `tasks/[task-name]/context.md`.
+
+This SHORT file contains:
+- Project stack (language, framework)
+- Available commands (test, lint, typecheck)
+- Project structure (where source/tests live)
+- Codebase patterns (learnings from previous stories)
+
+**You do NOT need to:**
+- Re-detect the stack
+- Scan the whole codebase
+- Read progress.txt
+
+The orchestrator already did that work for you.
+
+### Step 1.2: Read PRD if Needed
+If you need more context about the overall feature:
+- Read `tasks/[task-name]/prd-*.md`
+
+### Step 1.3: Plan Implementation
+From your story's acceptance criteria:
+- List what needs to be built
+- Identify files to modify
+- Plan verification method for each criterion
+
+---
+
+## PHASE 2: IMPLEMENT
+
+Initialize: `attempts = 0`
+
+### Implementation Guidelines
+- Use **Edit Files** to make changes
+- Follow patterns from context.md
+- Keep changes focused on acceptance criteria
+- No scope creep
+
+---
+
+## PHASE 3: VERIFY ACCEPTANCE CRITERIA
+
+### Step 3.1: Run Quality Checks
+Use commands from context.md (if available):
+- Test command
+- Lint command
+- Typecheck command
+
+### Step 3.2: Verify Each Criterion
+For EACH acceptance criterion, determine how to verify and actually test it.
+
+**Verification approaches:**
+| Type | Method |
+|------|--------|
+| API behavior | HTTP requests, curl, API client |
+| Function behavior | Quick test script, REPL, unit test |
+| UI changes | **Browser** tool |
+| File operations | **Read Files** to verify |
+| Data persistence | Query/verify through app |
+| Error handling | Trigger and verify |
+| Performance | Measure timing |
+
+### Step 3.3: Save Test Tools
+**IMPORTANT:** Any test scripts, verification utilities, mock servers, etc. that you create:
+
+```
+tasks/[task-name]/test_tools/
+  test_[feature].py
+  verify_[criterion].sh
+  mock_[service].js
+  helper_[thing].py
+```
+
+**Name them descriptively** - they'll be preserved for future debugging.
+**Don't delete them** - orchestrator and user want them kept.
+
+### Step 3.4: Record Results
+For each acceptance criterion:
+- ✅ PASS - how verified
+- ❌ FAIL - what went wrong
+- ⏭️ SKIPPED - blocked by earlier failure
+
+---
+
+## PHASE 4: HANDLE FAILURES
+
+### All Pass ✅
+→ Go to PHASE 5
+
+### Any Fail ❌
+```
+attempts++
+```
+
+**Attempts 1-4:** Fix and re-verify
+
+**Attempt 5:** Completely different approach (don't break existing code)
+
+**After Attempt 5 Fails:**
+```
+git checkout -- .
+```
+→ Go to PHASE 6 with BLOCKED result
+
+---
+
+## PHASE 5: COMMIT
+
+```
+git add .
+git commit -m "feat: [STORY-ID] - [Story Title]"
+```
+
+→ Go to PHASE 6 with SUCCESS result
+
+---
+
+## PHASE 6: REPORT RESULT
+
+### SUCCESS Format:
+```
+RESULT: SUCCESS
+STORY: [STORY-ID]
+
+ACCEPTANCE_CRITERIA:
+  - AC1: ✅ [criterion] - verified by [method]
+  - AC2: ✅ [criterion] - verified by [method]
+
+CHANGES:
+  - [What was implemented]
+
+FILES:
+  - [Modified/created files]
+
+TEST_TOOLS_CREATED:
+  - tasks/[task-name]/test_tools/test_feature.py
+  - tasks/[task-name]/test_tools/verify_api.sh
+
+NEW_PATTERNS:
+  - [Any new pattern discovered that future stories should know]
+  - [E.g., "API endpoints need auth header X"]
+  - [E.g., "Database migrations require running Y first"]
+```
+
+### BLOCKED Format:
+```
+RESULT: BLOCKED
+STORY: [STORY-ID]
+
+ACCEPTANCE_CRITERIA:
+  - AC1: ✅ [criterion] - verified by [method]
+  - AC2: ❌ [criterion] - FAILED: [reason]
+  - AC3: ⏭️ [criterion] - skipped
+
+BLOCK_REASON: [Detailed explanation]
+
+ATTEMPTS_SUMMARY:
+  1. [Approach] - [failure reason]
+  2. [Approach] - [failure reason]
+  3. [Approach] - [failure reason]
+  4. [Approach] - [failure reason]
+  5. [Approach] - [failure reason]
+
+SUGGESTED_FIX: [What might help]
+
+TEST_TOOLS_CREATED:
+  - [Any tools created during attempts]
+
+NEW_PATTERNS:
+  - [Even failed attempts can reveal patterns]
+```
+
+Use `attempt_completion` to return to orchestrator.
+
+---
+
+## KEY RULES
+
+1. **Read context.md FIRST** - it's short and has what you need
+2. **Don't re-analyze stack** - orchestrator did that
+3. **Save test tools** - to `test_tools/` folder, they're preserved
+4. **Report NEW_PATTERNS** - orchestrator updates context.md
+5. **One story only** - no scope creep
+6. **5 attempts max** - then block
+7. **Descriptive test tool names** - future you will thank you
