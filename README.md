@@ -1,6 +1,9 @@
 # Dalph
 
+<img width="1264" height="848" alt="image" src="https://github.com/user-attachments/assets/643e0dbc-720d-4736-8d4d-8ef70146be26" />
+
 **Dalph = Dave + Ralph + Roo Code** 🤖
+
 
 Autonomous AI agent loop for Roo Code that runs repeatedly until all PRD items are complete. Fork of [Geoffrey Huntley's Ralph](https://github.com/AmpAI/amp-coder-ralph), adapted for Roo Code's custom modes and tool system.
 
