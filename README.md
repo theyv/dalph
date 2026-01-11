@@ -154,7 +154,7 @@ git log --oneline -10               # git history
 ## Credits
 
 - Original - Ralph by [Geoffrey Huntley](https://ghuntley.com/ralph)
-- For of [snarktank/ralph](https://github.com/snarktank/ralph)
+- Fork of [snarktank/ralph](https://github.com/snarktank/ralph)
 - Adapted for [Roo Code](https://github.com/RooVetGit/Roo-Code) by theyv
 
 ---
