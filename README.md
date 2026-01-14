@@ -145,9 +145,16 @@ git log --oneline -10               # git history
 
 ---
 
+## Tips
+
+- Use it with Roo Code Cloud to grab more coffees while it running.
+
+---
+
 ## Credits
 
-- Original [Ralph](https://github.com/AmpAI/amp-coder-ralph) by [Geoffrey Huntley](https://ghuntley.com/ralph)
+- Original - Ralph by [Geoffrey Huntley](https://ghuntley.com/ralph)
+- Fork of [snarktank/ralph](https://github.com/snarktank/ralph)
 - Adapted for [Roo Code](https://github.com/RooVetGit/Roo-Code) by theyv
 
 ---
