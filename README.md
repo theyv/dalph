@@ -49,13 +49,12 @@ Autonomous AI agent loop for Roo Code that runs repeatedly until all PRD items a
 
 ### 1. Install Custom Modes in Roo Code
 
-Go to **Roo Code → Settings → Modes → Create New Mode** and add three modes:
+Go to **Roo Code → Settings → Modes → Create New Mode** and import three modes:
 
-- **🏭 DALPH: PRD Creator** (slug: `dalph-prd-creator`) - see `dalph-prd-creator/dalph-prd-creator-info.md`
-- **🏭 DALPH: Orchestrator** (slug: `dalph-orchestrator`) - see `dalph-orchestrator/dalph-orchestrator-info.md`
-- **🏭 DALPH: Implementer** (slug: `dalph-implementer`) - see `dalph-implementer/dalph-implementer-info.md`
+- **🏭 DALPH: PRD Creator**
+- **🏭 DALPH: Orchestrator**
+- **🏭 DALPH: Implementer** 
 
-Copy the Role Definition, Short Description, When to Use, and Custom Instructions from each file.
 
 ### 2. Create 'tasks' Folder in your project directory
 
